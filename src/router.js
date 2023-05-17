@@ -7,6 +7,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import FindEmail from "./pages/FindEmail";
 import Profile from "./pages/Profile";
 import ProductDetail from "./pages/ProductDetail";
+import Order from "./pages/Order";
 
 const Router = createBrowserRouter([
     {
@@ -36,6 +37,10 @@ const Router = createBrowserRouter([
     {
         path : '/:productId',
         element : <ProductDetail />
+    },
+    {
+        path : '/cart/:productId',
+        element : <Order />
     }
 ]);
 

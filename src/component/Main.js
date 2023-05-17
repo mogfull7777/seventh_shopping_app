@@ -91,6 +91,7 @@ const Main = () => {
                                     <Card.Img
                                         variant="top"
                                         src={m.image}
+                                        style={{height : '18.75rem'}}
                                     />
                                     <Card.Body>
                                         <Card.Title>{m.name}</Card.Title>

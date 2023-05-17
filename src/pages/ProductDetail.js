@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
-import {Button, Card, Col, Container, Form, ListGroup, Row} from "react-bootstrap";
+import {Button, Card, Col, Container, Form, Image, ListGroup, Row} from "react-bootstrap";
 
 const ProductDetail = () => {
 
     const params = useParams();
+    const navigate = useNavigate();
 
     const [product, setProducts] = useState({});
     const [qty, setQty] = useState(0);
@@ -28,6 +29,7 @@ const ProductDetail = () => {
 
     }
 
+
     useEffect(() => {
         getProduct()
     }, [])
@@ -47,10 +49,10 @@ const ProductDetail = () => {
 
                         <Row>
                             <Col>
-                                <image src={product.image} alt={product.name} fluid />
+                                <Image src={product.image} alt={product.name} fluid />
                             </Col>
 
-                            <Col>
+                            <Col md={4}>
                                 <ListGroup>
                                     <ListGroup.Item>
                                         <h3>{product.name}</h3>
@@ -110,6 +112,8 @@ const ProductDetail = () => {
                                                                     <option key={x+1} value={x+1}>
                                                                         {x+1}
                                                                     </option>
+                                                                    // 데이터 사이사이에 , 를 달아서 배열완성
+                                                                    // 컴퓨터는 0부터 카운트 하는 것을 까먹지 말기.
                                                                 )
                                                             )}
                                                         </Form.Control>
@@ -123,6 +127,7 @@ const ProductDetail = () => {
 
                                         <ListGroup.Item>
                                             <Button
+                                                onClick={() => navigate(`/cart/${product._id}`)}
                                                 className={'btn-block'}
                                                 type={'button'}
                                                 disabled={product.countInStock === 0}
